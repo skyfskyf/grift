@@ -495,7 +495,7 @@ x                                     ; → 2
 |-------|-----------|
 | `OutOfMemory` | Arena full, allocation failed. |
 | `TypeError` | Wrong type for operation (e.g., `(car 5)`). |
-| `ParseError` | Malformed S-expression syntax. |
+| `ParseError` | Malformed S-expression syntax (includes line/column location). |
 | `UnboundVariable` | Symbol not found in environment chain. |
 | `NotCallable` | Attempted to apply a non-combiner value. |
 | `ArithmeticOverflow` | Checked arithmetic operation overflowed. |

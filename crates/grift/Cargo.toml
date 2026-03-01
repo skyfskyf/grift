@@ -14,6 +14,13 @@ grift_arena.workspace = true
 grift_macros = { path = "../grift_macros" }
 rustyline = { version = "17.0.2", optional = true }
 
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+
 [[bin]]
 name = "grift"
 required-features = ["repl"]
+
+[[bench]]
+name = "eval_bench"
+harness = false

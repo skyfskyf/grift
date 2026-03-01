@@ -1,6 +1,7 @@
 #![no_std]
 #![forbid(unsafe_code)]
-#![warn(missing_docs)]
+#![deny(missing_docs)]
+#![warn(clippy::pedantic)]
 
 //! # Grift – A Minimalistic Lisp
 //!

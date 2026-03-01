@@ -11,3 +11,10 @@ keywords = ["arena", "allocator", "no_std", "embedded", "gc"]
 categories = ["no-std", "embedded", "memory-management"]
 
 [dependencies]
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[[bench]]
+name = "arena_bench"
+harness = false
