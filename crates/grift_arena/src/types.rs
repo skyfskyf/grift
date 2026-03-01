@@ -180,7 +180,13 @@ pub enum ArenaError {
     TypeError,
 
     /// A parse error occurred while reading an S-expression.
-    ParseError,
+    /// Includes source location (1-based line and column) for diagnostics.
+    ParseError {
+        /// 1-based line number where the error was detected.
+        line: u32,
+        /// 1-based column number where the error was detected.
+        col: u32,
+    },
 
     /// Checked arithmetic overflowed (e.g., addition, negation).
     ArithmeticOverflow,
@@ -209,7 +215,7 @@ impl ArenaError {
             ArenaError::TraceError => "Error during GC tracing",
             ArenaError::Cyclic => "Cycle detected in evaluation",
             ArenaError::TypeError => "Type error",
-            ArenaError::ParseError => "Parse error",
+            ArenaError::ParseError { .. } => "Parse error",
             ArenaError::ArithmeticOverflow => "Arithmetic overflow",
             ArenaError::DivisionByZero => "Division by zero",
             ArenaError::UnboundVariable => "Unbound variable",
@@ -239,7 +245,12 @@ impl ArenaError {
 
 impl core::fmt::Display for ArenaError {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-        f.write_str(self.as_str())
+        match self {
+            ArenaError::ParseError { line, col } => {
+                write!(f, "Parse error at line {line}, column {col}")
+            }
+            other => f.write_str(other.as_str()),
+        }
     }
 }
 
