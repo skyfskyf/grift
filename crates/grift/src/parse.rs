@@ -143,6 +143,11 @@ impl<const N: usize> CharSource for ChainSource<'_, N> {
         }
     }
 
+    /// Return the current position.
+    ///
+    /// `ChainSource` does not track source positions since it reads from
+    /// in-memory `CharPair` chains rather than source text.  Returns `(0, 0)`
+    /// to indicate that position information is unavailable.
     fn position(&self) -> (u32, u32) {
         (0, 0)
     }
