@@ -16,6 +16,7 @@ rustyline = { version = "17.0.2", optional = true }
 
 [dev-dependencies]
 criterion = { version = "0.5", features = ["html_reports"] }
+proptest = "1.6"
 
 [[bin]]
 name = "grift"
